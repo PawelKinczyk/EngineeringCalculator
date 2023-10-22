@@ -11,9 +11,9 @@
 
             <Image
                 Source="main_icon.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                SemanticProperties.Description="Logo"
                 HeightRequest="200"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"/>
 
             <Label
                 Text="Engineering calculator"
@@ -22,12 +22,17 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="Please pick type of calculations"
+                Text="Hi, I'm glad that You use my calculator. In the left corner You can pick calculations. Film with instruction below:"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
-
+            <Button
+                Text="Instruction video"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="InstructionClicked"
+                HorizontalOptions="Center" />
+            
             <Button
                 x:Name="CounterBtn"
                 Text="Click me"

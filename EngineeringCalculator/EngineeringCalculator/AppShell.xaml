@@ -14,16 +14,14 @@
             Route="MainPage"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="Sunrise" Icon="dotnet_bot.png">
+    <FlyoutItem Title="SecondCalculation" Icon="tick_box.png">
         <ShellContent
-
-        ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage"/>
+        ContentTemplate="{DataTemplate local:SecondCalculation}"
+            Route="SecondCalculation"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="About" Icon="tick_box.png">
+    <FlyoutItem Title="Round duct to rectangle" Icon="tick_box.png">
         <ShellContent
-        Icon="tick_box.png"
         ContentTemplate="{DataTemplate local:VentilationCalculations}"
             Route="VentilationCalculations"/>
     </FlyoutItem>

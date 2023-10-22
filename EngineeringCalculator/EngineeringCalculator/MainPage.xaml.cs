@@ -1,4 +1,6 @@
-﻿namespace EngineeringCalculator;
+﻿using System.Diagnostics;
+
+namespace EngineeringCalculator;
 
 public partial class MainPage : ContentPage
 {
@@ -20,6 +22,10 @@ public partial class MainPage : ContentPage
 
 		SemanticScreenReader.Announce(CounterBtn.Text);
 	}
+    private void InstructionClicked(object sender, EventArgs e)
+    {
+		Process.Start(new ProcessStartInfo("https://www.youtube.com/watch?v=C4MpzSMkinw&t=2881s") { UseShellExecute = true});
+    }
 
 }
 

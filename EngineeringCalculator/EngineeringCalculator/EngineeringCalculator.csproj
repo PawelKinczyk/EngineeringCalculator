@@ -63,6 +63,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="SecondCalculation.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="VentilationCalculations.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
