@@ -8,6 +8,12 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+
+        <Picker x:Name="myPicker" Title="Select a monkey"
+         />
+
+
     </VerticalStackLayout>
     
 </ContentPage>
