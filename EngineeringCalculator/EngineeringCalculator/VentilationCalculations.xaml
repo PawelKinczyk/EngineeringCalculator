@@ -10,9 +10,8 @@
             HorizontalOptions="Center" />
 
 
-        <Picker x:Name="myPicker" Title="Select a monkey"
-         />
-
+        <Picker x:Name="XPicker" Title="Select X dimension"/>
+        <Picker x:Name="YPicker" Title="Select Y dimension"/>
 
     </VerticalStackLayout>
     

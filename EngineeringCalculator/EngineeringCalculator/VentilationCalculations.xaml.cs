@@ -7,15 +7,10 @@ public partial class VentilationCalculations : ContentPage
 
         InitializeComponent();
 
-        List<string> predefinedItems = new List<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3"
-                // Add more items as needed
-            };
-        myPicker.ItemsSource = predefinedItems;
-
+        List<int> predefinedItems = new List<int> { };
+        predefinedItems.AddRange(Enumerable.Range(100, 400).Where(x => x%10 ==0));
+        XPicker.ItemsSource = predefinedItems;
+        YPicker.ItemsSource = predefinedItems;
     }
 
 	
