@@ -12,6 +12,17 @@
 
         <Picker x:Name="XPicker" Title="Select X dimension"/>
         <Picker x:Name="YPicker" Title="Select Y dimension"/>
+        <Entry x:Name="entry"
+       Placeholder="Enter air flow in m3/h"/>
+        <Button
+                x:Name="CounterBtn"
+                Text="Recalculate"
+                SemanticProperties.Hint="Recalculate rectangle duct to round"
+                Clicked="OnGetEquivalentChannels"
+                HorizontalOptions="Center" />
+        <ListView x:Name="RecalculatedDucts" Background="Transparent">
+            // to do list view with columns
+        </ListView>
 
     </VerticalStackLayout>
     
