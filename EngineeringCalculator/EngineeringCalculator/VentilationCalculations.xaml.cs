@@ -40,13 +40,13 @@ public partial class VentilationCalculations : ContentPage
         
         List<Duct> selectedRoundDucts = new List<Duct>();
         for (int i = pickedIndex-1; i <= pickedIndex+1; i++) {
-            selectedRoundDucts.Add(new Duct { dimension = roundDuctDimensions[i], crossSection = (int)Math.PI * (int)Math.Pow(roundDuctDimensions[i], 2) });
+            selectedRoundDucts.Add(new Duct { dimension = roundDuctDimensions[i], crossSection = Math.Round((Math.PI * Math.Pow(roundDuctDimensions[i], 2))/1000000, 2) });
         }
         RecalculatedDucts.ItemsSource = selectedRoundDucts;
     }
     public class Duct
     {
         public int dimension { get; set; }
-        public int crossSection { get; set; }
+        public double crossSection { get; set; }
     }
 }
