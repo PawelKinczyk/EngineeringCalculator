@@ -12,8 +12,18 @@
 
         <Picker x:Name="XPicker" Title="Select X dimension"/>
         <Picker x:Name="YPicker" Title="Select Y dimension"/>
-        <Entry x:Name="AirEntry"
-       Placeholder="Enter air flow in m3/h" />
+        <Grid Padding="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Entry Grid.Row="0" Grid.Column="0" x:Name="AirEntry"
+       Placeholder="Enter air flow in m3/h" Keyboard="Numeric"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="m³/h" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
         <Button
                 x:Name="CounterBtn"
                 Text="Recalculate"
