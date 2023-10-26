@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace EngineeringCalculator;
 
 public partial class VentilationCalculations : ContentPage
@@ -11,6 +13,7 @@ public partial class VentilationCalculations : ContentPage
         predefinedItems.AddRange(Enumerable.Range(100, 400).Where(x => x%10 ==0));
         XPicker.ItemsSource = predefinedItems;
         YPicker.ItemsSource = predefinedItems;
+        
         
     }
     private void OnGetEquivalentChannels(object sender, EventArgs e)
@@ -40,7 +43,14 @@ public partial class VentilationCalculations : ContentPage
         
         List<Duct> selectedRoundDucts = new List<Duct>();
         for (int i = pickedIndex-1; i <= pickedIndex+1; i++) {
-            selectedRoundDucts.Add(new Duct { dimension = roundDuctDimensions[i], crossSection = Math.Round((Math.PI * Math.Pow(roundDuctDimensions[i], 2))/1000000, 2) });
+            
+            Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSection(roundDuctDimensions[i]) };
+            
+            if (Double.TryParse(AirEntry.Text, out double AirFlow)==true)
+            {
+                duct.airSpeed = AirFlow / duct.crossSection;
+            }
+            selectedRoundDucts.Add(duct);
         }
         RecalculatedDucts.ItemsSource = selectedRoundDucts;
     }
@@ -48,5 +58,11 @@ public partial class VentilationCalculations : ContentPage
     {
         public int dimension { get; set; }
         public double crossSection { get; set; }
+        public double airSpeed { get; set; }
+    }
+
+    public double crossSection (int ductDimension)
+    {
+        return Math.Round((Math.PI * Math.Pow(ductDimension, 2)) / 1000000, 2);
     }
 }

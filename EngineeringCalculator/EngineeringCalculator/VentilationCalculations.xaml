@@ -12,8 +12,8 @@
 
         <Picker x:Name="XPicker" Title="Select X dimension"/>
         <Picker x:Name="YPicker" Title="Select Y dimension"/>
-        <Entry x:Name="entry"
-       Placeholder="Enter air flow in m3/h"/>
+        <Entry x:Name="AirEntry"
+       Placeholder="Enter air flow in m3/h" />
         <Button
                 x:Name="CounterBtn"
                 Text="Recalculate"
@@ -27,10 +27,12 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Text="Dimension" FontAttributes="Bold" />
                     <Label Grid.Column="1" Text="Cross Section" FontAttributes="Bold" />
+                    <Label Grid.Column="2" Text="Air speed" FontAttributes="Bold" />
                 </Grid>
             </ListView.Header>
 
@@ -43,6 +45,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0"
@@ -52,6 +55,10 @@
                             <Label
                            Grid.Column="1"
                            Text="{Binding crossSection, StringFormat='{0} m³'}"
+                            />
+                            <Label
+                           Grid.Column="2"
+                           Text="{Binding airSpeed, StringFormat='{0} m/h'}"
                             />
                         </Grid>
                     </ViewCell>
