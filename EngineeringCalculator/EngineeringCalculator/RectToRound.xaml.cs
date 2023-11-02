@@ -4,10 +4,10 @@ using EngineeringCalculator.Objects;
 
 namespace EngineeringCalculator;
 
-public partial class VentilationCalculations : ContentPage
+public partial class RectToRound : ContentPage
 {
     public ObservableCollection<DuctGroup> Ducts { get; private set; } = new ObservableCollection<DuctGroup>();
-    public VentilationCalculations()
+    public RectToRound()
     {
 
         InitializeComponent();

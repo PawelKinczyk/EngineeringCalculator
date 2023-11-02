@@ -20,10 +20,10 @@
             Route="SecondCalculation"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="Round duct to rectangle" Icon="tick_box.png">
+    <FlyoutItem Title="Rectangle duct to round" Icon="tick_box.png">
         <ShellContent
-        ContentTemplate="{DataTemplate local:VentilationCalculations}"
-            Route="VentilationCalculations"/>
+        ContentTemplate="{DataTemplate local:RectToRound}"
+            Route="RectToRound"/>
     </FlyoutItem>
 
 
