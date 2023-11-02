@@ -1,9 +1,12 @@
+using System.Collections.ObjectModel;
 using System.Security.Cryptography.X509Certificates;
+using EngineeringCalculator.Objects;
 
 namespace EngineeringCalculator;
 
 public partial class VentilationCalculations : ContentPage
 {
+    public ObservableCollection<DuctGroup> Ducts { get; private set; } = new ObservableCollection<DuctGroup>();
     public VentilationCalculations()
     {
 
@@ -18,112 +21,124 @@ public partial class VentilationCalculations : ContentPage
     }
     private void OnGetEquivalentChannels(object sender, EventArgs e)
     {
+        Ducts.Clear();
         // Calculate properties of input duct
-        int activeCrossSection = 0;
+        double activeCrossSection = 0;
         List<Duct> rectangleDuctList = new List<Duct>();
-        if (XPicker.SelectedItem!=null && YPicker.SelectedItem!=null)
-                // int.TryParse(XPicker.SelectedItem.ToString(), out int XPickerValue) && int.TryParse(YPicker.SelectedItem.ToString(), out int YPickerValue)
-        {
-            activeCrossSection = (int)XPicker.SelectedItem * (int)YPicker.SelectedItem;
-            Duct rectangleDuct = new Duct { dimension = null, crossSection = crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem) };
-            if (Double.TryParse(AirEntry.Text, out double RectangleAirFlow) == true) { rectangleDuct.airSpeed = airSpeedCalculation(rectangleDuct.crossSection, RectangleAirFlow); }
-            else { rectangleDuct.airSpeed = null; }
-            rectangleDuctList.Add(rectangleDuct);
-        }
-        else
-        {
-            RecalculateSummary.Text = "Wrong input values";
-        }
-
         // List of round ducts
         List<int> roundDuctDimensions = new List<int>
         {
             63,80,100,125,160,200,250,315,400,500,630,800,1000,1250
         };
-        // Define index and loop values
-        int index = -1;
-        int pickedIndex = 0;
-        int closestValueToActiveCrossSection = 100000;
-
-        // Loop and find the closest cross section
-        foreach (int roundDuct in roundDuctDimensions)
-        {
-            index++;
-            int roundDuctCrossSection = (int)Math.PI * (int)Math.Pow(roundDuct, 2);
-            int crossSectionDifference = Math.Abs(activeCrossSection - roundDuctCrossSection);
-            if (crossSectionDifference < closestValueToActiveCrossSection)
-            {
-                pickedIndex = index;
-                closestValueToActiveCrossSection = crossSectionDifference;
-            }
-            else { continue; }
-        }
         // Create list with equal round ducts
         List<Duct> selectedRoundDuctsList = new List<Duct>();
-        if (pickedIndex >= 2)
+
+        if (XPicker.SelectedItem != null && YPicker.SelectedItem != null)
+        // int.TryParse(XPicker.SelectedItem.ToString(), out int XPickerValue) && int.TryParse(YPicker.SelectedItem.ToString(), out int YPickerValue)
         {
-            for (int i = pickedIndex - 1; i <= pickedIndex + 1; i++)
+            activeCrossSection = double.Parse(XPicker.SelectedItem.ToString()) * double.Parse(YPicker.SelectedItem.ToString());
+            Duct rectangleDuct = new Duct { dimension = null, crossSection = crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem) };
+            if (Double.TryParse(AirEntry.Text, out double RectangleAirFlow) == true) { rectangleDuct.airSpeed = airSpeedCalculation(rectangleDuct.crossSection, RectangleAirFlow); }
+            else { rectangleDuct.airSpeed = null; }
+            rectangleDuctList.Add(rectangleDuct);
+            Ducts.Add(new DuctGroup("Rectangle duct", rectangleDuctList));
+
+
+            // Define index and loop values
+            int index = -1;
+            int pickedIndex = 0;
+            double closestValueToActiveCrossSection = 1000000000;
+
+            // Loop and find the closest cross section
+            foreach (double roundDuct in roundDuctDimensions)
             {
-
-                Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
-
-                if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
+                index++;
+                double roundDuctCrossSection = Math.PI * (double)Math.Pow(roundDuct, 2);
+                double crossSectionDifference = Math.Abs(activeCrossSection - roundDuctCrossSection);
+                if (crossSectionDifference < closestValueToActiveCrossSection)
                 {
-                    duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
+                    pickedIndex = index;
+                    closestValueToActiveCrossSection = crossSectionDifference;
                 }
-                else
-                {
-                    duct.airSpeed = null;
-                }
-                selectedRoundDuctsList.Add(duct);
+                else { }
             }
+
+            if (pickedIndex >= 1 && pickedIndex <= roundDuctDimensions.Count)
+            {
+                for (int i = pickedIndex - 1; i <= pickedIndex + 1; i++)
+                {
+
+                    Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+
+                    if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
+                    {
+                        duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
+                    }
+                    else
+                    {
+                        duct.airSpeed = null;
+                    }
+                    selectedRoundDuctsList.Add(duct);
+                }
+            }
+            else if (pickedIndex == 0)
+            {
+                for (int i = pickedIndex; i <= pickedIndex + 1; i++)
+                {
+
+                    Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+
+                    if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
+                    {
+                        duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
+                    }
+                    else
+                    {
+                        duct.airSpeed = null;
+                    }
+                    selectedRoundDuctsList.Add(duct);
+                }
+            }
+            else if (pickedIndex == roundDuctDimensions.Count)
+            {
+                for (int i = pickedIndex - 1; i <= pickedIndex; i++)
+                {
+
+                    Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+
+                    if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
+                    {
+                        duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
+                    }
+                    else
+                    {
+                        duct.airSpeed = null;
+                    }
+                    selectedRoundDuctsList.Add(duct);
+                }
+            }
+            else { }
+            // Update lists of round and rectangle ducts
+            OnPropertyChanged(nameof(Ducts));
+            Ducts.Add(new DuctGroup("Equal round duct", selectedRoundDuctsList));
+            RecalculatedDucts.ItemsSource = Ducts;
+
         }
-        else if (pickedIndex == 0)
+        else
         {
-            for (int i = pickedIndex; i <= pickedIndex + 1; i++)
-            {
-
-                Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
-
-                if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
-                {
-                    duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
-                }
-                else
-                {
-                    duct.airSpeed = null;
-                }
-                selectedRoundDuctsList.Add(duct);
-            }
+            // Pass if inputs are null
         }
-        else if (pickedIndex == roundDuctDimensions.Count)
-        {
-            for (int i = pickedIndex - 1; i <= pickedIndex; i++)
-            {
 
-                Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
-
-                if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
-                {
-                    duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
-                }
-                else
-                {
-                    duct.airSpeed = null;
-                }
-                selectedRoundDuctsList.Add(duct);
-            }
-        }
-        else { }
-        // Update lists of round and rectangle ducts
-        RecalculatedDucts.ItemsSource = selectedRoundDuctsList;
-        RectangleDuct.ItemsSource = rectangleDuctList;
     }
-    public class Duct
+
+    public class DuctGroup : List<Duct>
     {
-        public int? dimension { get; set; }
-        public double crossSection { get; set; }
-        public double? airSpeed { get; set; }
+        public string ductType { get; private set; }
+
+        public DuctGroup(string type, List<Duct> ducts) : base(ducts)
+        {
+            ductType = type;
+        }
     }
 
     public double crossSectionRoundDuct(int ductDimension)
@@ -136,6 +151,6 @@ public partial class VentilationCalculations : ContentPage
     }
     public double airSpeedCalculation(double crossSection, double airFlow)
     {
-        return Math.Round(airFlow / (crossSection*3600), 3);
+        return Math.Round(airFlow / (crossSection * 3600), 3);
     }
 }

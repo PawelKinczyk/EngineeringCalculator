@@ -3,130 +3,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EngineeringCalculator.VentilationCalculations"
              Title="Rectangle duct to round">
-    <VerticalStackLayout>
-        <!-- Grid with X and Y lenght of rectangular duct-->
-        
-        <Grid Padding="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Picker Grid.Row="0" x:Name="XPicker" Title="Select X dimension"/>
-            <Picker Grid.Row="1" x:Name="YPicker" Title="Select Y dimension"/>
-        </Grid>
-        <!-- Grid with manual entry -->
-        <Grid Padding="10" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Entry Grid.Row="0" Grid.Column="0" x:Name="AirEntry"
+    <ScrollView>
+        <VerticalStackLayout>
+            <!-- Grid with X and Y lenght of rectangular duct-->
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Picker Grid.Row="0" x:Name="XPicker" Title="Select X dimension"/>
+                <Picker Grid.Row="1" x:Name="YPicker" Title="Select Y dimension"/>
+            </Grid>
+            <!-- Grid with manual entry -->
+            <Grid Padding="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="0" Grid.Column="0" x:Name="AirEntry"
        Placeholder="Enter air flow in m3/h" Keyboard="Numeric"/>
-            <Label Grid.Row="0" Grid.Column="1" Text="m³/h" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </Grid>
-        <!-- Button to calculate the best round ducts -->
-        
-        <Button 
+                <Label Grid.Row="0" Grid.Column="1" Text="m³/h" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+            <!-- Button to calculate the best round ducts -->
+            <Button 
                 x:Name="CounterBtn"
                 Text="Recalculate"
                 SemanticProperties.Hint="Recalculate rectangle duct to round"
                 Clicked="OnGetEquivalentChannels"
                 HorizontalOptions="Center" />
-        
-        
-    <ListView x:Name="RectangleDuct" Background="Transparent">
-            <ListView.Header >
-
-                <Grid Padding="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Text="Input rectangle duct informations" FontAttributes="Bold" Background="Gray"/>
-                    <Label Grid.Row="1" Grid.Column="0" Text="Dimension" FontAttributes="Bold" />
-                    <Label Grid.Row="1" Grid.Column="1" Text="Cross Section" FontAttributes="Bold" />
-                    <Label Grid.Row="1" Grid.Column="2" Text="Air speed" FontAttributes="Bold" />
-                </Grid>
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0"
+            <!-- Show list view-->
+            <ListView x:Name="RecalculatedDucts"
+          IsGroupingEnabled="True" >
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate >
+                        <ViewCell>
+                            <Label Text="{Binding ductType}" Padding="10"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
                            Text="{Binding dimension, StringFormat='{0} &#x2205;'}"
                             />
-                            <Label
+                                <Label
                            Grid.Column="1"
                            Text="{Binding crossSection, StringFormat='{0} m²'}"
                             />
-                            <Label
+                                <Label
                            Grid.Column="2"
                            Text="{Binding airSpeed, StringFormat='{0} m/s'}"
                             />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        <!-- Print list with 3 best round ducts-->
-           
-    <ListView  x:Name="RecalculatedDucts" Background="Transparent">
-            <ListView.Header>
-                <Grid Padding="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="RecalculateSummary" Grid.Row="0" Text="Equal round ducts" FontAttributes="Bold" Background="Gray"/>
-                    <Label Grid.Row="1" Grid.Column="0" Text="Dimension" FontAttributes="Bold" />
-                    <Label Grid.Row="1" Grid.Column="1" Text="Cross Section" FontAttributes="Bold" />
-                    <Label Grid.Row="1" Grid.Column="2" Text="Air speed" FontAttributes="Bold" />
-                </Grid>
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0"
-                           Text="{Binding dimension, StringFormat='{0} &#x2205;'}"
-                            />
-                            <Label
-                           Grid.Column="1"
-                           Text="{Binding crossSection, StringFormat='{0} m²'}"
-                            />
-                            <Label
-                           Grid.Column="2"
-                           Text="{Binding airSpeed, StringFormat='{0} m/s'}"
-                            />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-    </VerticalStackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -13,7 +13,7 @@ public partial class App : Application
         var window = new Window();
         window.MaximumHeight = 600;
         window.MaximumWidth = 800;
-        window.MinimumHeight = 500;
+        window.MinimumHeight = 300;
         window.MinimumWidth = 500;
         window.Page = new AppShell();
         return window;
