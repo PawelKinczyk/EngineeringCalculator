@@ -1,8 +1,8 @@
 namespace EngineeringCalculator;
 
-public partial class SecondCalculation : ContentPage
+public partial class RoundToRect : ContentPage
 {
-	public SecondCalculation()
+	public RoundToRect()
 	{
 		InitializeComponent();
 	}

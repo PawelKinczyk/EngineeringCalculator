@@ -12,10 +12,8 @@ public partial class RectToRound : ContentPage
 
         InitializeComponent();
 
-        List<int> predefinedItems = new List<int>();
-        predefinedItems.AddRange(Enumerable.Range(100, 400).Where(x => x % 10 == 0));
-        XPicker.ItemsSource = predefinedItems;
-        YPicker.ItemsSource = predefinedItems;
+        XPicker.ItemsSource = Duct.rectangleDuctDimensions;
+        YPicker.ItemsSource = Duct.rectangleDuctDimensions;
 
 
     }
