@@ -35,7 +35,7 @@ public partial class RectToRound : ContentPage
         // int.TryParse(XPicker.SelectedItem.ToString(), out int XPickerValue) && int.TryParse(YPicker.SelectedItem.ToString(), out int YPickerValue)
         {
             activeCrossSection = double.Parse(XPicker.SelectedItem.ToString()) * double.Parse(YPicker.SelectedItem.ToString());
-            Duct rectangleDuct = new Duct { dimension = null, crossSection = crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem) };
+            Duct rectangleDuct = new Duct { diameter = null, crossSection = crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem) };
             if (Double.TryParse(AirEntry.Text, out double RectangleAirFlow) == true) { rectangleDuct.airSpeed = airSpeedCalculation(rectangleDuct.crossSection, RectangleAirFlow); }
             else { rectangleDuct.airSpeed = null; }
             rectangleDuctList.Add(rectangleDuct);
@@ -66,7 +66,7 @@ public partial class RectToRound : ContentPage
                 for (int i = pickedIndex - 1; i <= pickedIndex + 1; i++)
                 {
 
-                    Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
 
                     if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
                     {
@@ -84,7 +84,7 @@ public partial class RectToRound : ContentPage
                 for (int i = pickedIndex; i <= pickedIndex + 1; i++)
                 {
 
-                    Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
 
                     if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
                     {
@@ -102,7 +102,7 @@ public partial class RectToRound : ContentPage
                 for (int i = pickedIndex - 1; i <= pickedIndex; i++)
                 {
 
-                    Duct duct = new Duct { dimension = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
 
                     if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
                     {
