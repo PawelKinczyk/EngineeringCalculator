@@ -54,7 +54,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0"
-                           Text="{Binding dimension, StringFormat='{0} &#x2205;'}"
+                           Text="{Binding diameter, StringFormat='{0} &#x2205;'}"
                             />
                                 <Label
                            Grid.Column="1"

@@ -129,15 +129,15 @@ public partial class RectToRound : ContentPage
 
     }
 
-    public class DuctGroup : List<Duct>
-    {
-        public string ductType { get; private set; }
+    //public class DuctGroup : List<Duct>
+    //{
+    //    public string ductType { get; private set; }
 
-        public DuctGroup(string type, List<Duct> ducts) : base(ducts)
-        {
-            ductType = type;
-        }
-    }
+    //    public DuctGroup(string type, List<Duct> ducts) : base(ducts)
+    //    {
+    //        ductType = type;
+    //    }
+    //}
 
     public double crossSectionRoundDuct(int ductDimension)
     {
