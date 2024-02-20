@@ -35,8 +35,8 @@ public partial class RectToRound : ContentPage
         // int.TryParse(XPicker.SelectedItem.ToString(), out int XPickerValue) && int.TryParse(YPicker.SelectedItem.ToString(), out int YPickerValue)
         {
             activeCrossSection = double.Parse(XPicker.SelectedItem.ToString()) * double.Parse(YPicker.SelectedItem.ToString());
-            Duct rectangleDuct = new Duct { diameter = null, crossSection = crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem) };
-            if (Double.TryParse(AirEntry.Text, out double RectangleAirFlow) == true) { rectangleDuct.airSpeed = airSpeedCalculation(rectangleDuct.crossSection, RectangleAirFlow); }
+            Duct rectangleDuct = new Duct { diameter = null, crossSection = Calculations.crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem) };
+            if (Double.TryParse(AirEntry.Text, out double RectangleAirFlow) == true) { rectangleDuct.airSpeed = Calculations.airSpeedCalculation(rectangleDuct.crossSection, RectangleAirFlow); }
             else { rectangleDuct.airSpeed = null; }
             rectangleDuctList.Add(rectangleDuct);
             Ducts.Add(new DuctGroup("Rectangle duct", rectangleDuctList));
@@ -66,11 +66,11 @@ public partial class RectToRound : ContentPage
                 for (int i = pickedIndex - 1; i <= pickedIndex + 1; i++)
                 {
 
-                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = Calculations.crossSectionRoundDuct(roundDuctDimensions[i]) };
 
                     if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
                     {
-                        duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
+                        duct.airSpeed = Calculations.airSpeedCalculation(duct.crossSection, AirFlow);
                     }
                     else
                     {
@@ -84,11 +84,11 @@ public partial class RectToRound : ContentPage
                 for (int i = pickedIndex; i <= pickedIndex + 1; i++)
                 {
 
-                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = Calculations.crossSectionRoundDuct(roundDuctDimensions[i]) };
 
                     if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
                     {
-                        duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
+                        duct.airSpeed = Calculations.airSpeedCalculation(duct.crossSection, AirFlow);
                     }
                     else
                     {
@@ -102,11 +102,11 @@ public partial class RectToRound : ContentPage
                 for (int i = pickedIndex - 1; i <= pickedIndex; i++)
                 {
 
-                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = crossSectionRoundDuct(roundDuctDimensions[i]) };
+                    Duct duct = new Duct { diameter = roundDuctDimensions[i], crossSection = Calculations.crossSectionRoundDuct(roundDuctDimensions[i]) };
 
                     if (Double.TryParse(AirEntry.Text, out double AirFlow) == true)
                     {
-                        duct.airSpeed = airSpeedCalculation(duct.crossSection, AirFlow);
+                        duct.airSpeed = Calculations.airSpeedCalculation(duct.crossSection, AirFlow);
                     }
                     else
                     {
@@ -129,26 +129,16 @@ public partial class RectToRound : ContentPage
 
     }
 
-    //public class DuctGroup : List<Duct>
+    //public double crossSectionRoundDuct(int ductDimension)
     //{
-    //    public string ductType { get; private set; }
-
-    //    public DuctGroup(string type, List<Duct> ducts) : base(ducts)
-    //    {
-    //        ductType = type;
-    //    }
+    //    return Math.Round((Math.PI * Math.Pow(ductDimension, 2)) / 1000000, 3);
     //}
-
-    public double crossSectionRoundDuct(int ductDimension)
-    {
-        return Math.Round((Math.PI * Math.Pow(ductDimension, 2)) / 1000000, 3);
-    }
-    public double crossSectionRectangleDuct(int XLength, int YLength)
-    {
-        return Math.Round(((double)(XLength * YLength) / 1000000), 3);
-    }
-    public double airSpeedCalculation(double crossSection, double airFlow)
-    {
-        return Math.Round(airFlow / (crossSection * 3600), 3);
-    }
+    //public double crossSectionRectangleDuct(int XLength, int YLength)
+    //{
+    //    return Math.Round(((double)(XLength * YLength) / 1000000), 3);
+    //}
+    //public double airSpeedCalculation(double crossSection, double airFlow)
+    //{
+    //    return Math.Round(airFlow / (crossSection * 3600), 3);
+    //}
 }
