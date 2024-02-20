@@ -128,17 +128,4 @@ public partial class RectToRound : ContentPage
         }
 
     }
-
-    //public double crossSectionRoundDuct(int ductDimension)
-    //{
-    //    return Math.Round((Math.PI * Math.Pow(ductDimension, 2)) / 1000000, 3);
-    //}
-    //public double crossSectionRectangleDuct(int XLength, int YLength)
-    //{
-    //    return Math.Round(((double)(XLength * YLength) / 1000000), 3);
-    //}
-    //public double airSpeedCalculation(double crossSection, double airFlow)
-    //{
-    //    return Math.Round(airFlow / (crossSection * 3600), 3);
-    //}
 }
