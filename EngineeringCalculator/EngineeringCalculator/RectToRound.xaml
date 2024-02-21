@@ -32,7 +32,7 @@
                 x:Name="CounterBtn"
                 Text="Recalculate"
                 SemanticProperties.Hint="Recalculate rectangle duct to round"
-                Clicked="OnGetEquivalentChannels"
+                Clicked="GetBestRoundDuct"
                 HorizontalOptions="Center" />
             <!-- Show list view-->
             <ListView x:Name="RecalculatedDucts"

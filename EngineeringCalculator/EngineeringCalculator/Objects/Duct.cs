@@ -9,7 +9,7 @@
         public double? airSpeed { get; set; }
         public string ductType { get; set; }
         public static List<int> rectangleDuctDimensions { get; } = new List<int>(Enumerable.Range(100, 400).Where(x => x % 10 == 0));
-
+        public static List<int> roundDuctDimensions { get; } = new List<int> { 63, 80, 100, 125, 160, 200, 250, 315, 400, 500, 630, 800, 1000, 1250 };
 
     }
 
