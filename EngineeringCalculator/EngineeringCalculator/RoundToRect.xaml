@@ -25,6 +25,13 @@
        Placeholder="Enter air flow in m3/h" Keyboard="Numeric"/>
                 <Label Grid.Row="0" Grid.Column="1" Text="m³/h" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
+            <!-- Button to calculate the best rect ducts -->
+            <Button 
+                x:Name="CounterBtn"
+                Text="Recalculate"
+                SemanticProperties.Hint="Recalculate rectangle duct to round"
+                Clicked="GetBestRectangleDuct"
+                HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

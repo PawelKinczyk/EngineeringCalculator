@@ -17,17 +17,14 @@ public partial class RectToRound : ContentPage
 
 
     }
-    private void OnGetEquivalentChannels(object sender, EventArgs e)
+    private void GetBestRoundDuct(object sender, EventArgs e)
     {
         Ducts.Clear();
         // Calculate properties of input duct
         double activeCrossSection = 0;
         List<Duct> rectangleDuctList = new List<Duct>();
         // List of round ducts
-        List<int> roundDuctDimensions = new List<int>
-        {
-            63,80,100,125,160,200,250,315,400,500,630,800,1000,1250
-        };
+        List<int> roundDuctDimensions = Duct.roundDuctDimensions;
         // Create list with equal round ducts
         List<Duct> selectedRoundDuctsList = new List<Duct>();
 
