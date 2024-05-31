@@ -3,7 +3,7 @@
     public class Duct
     {
         public int? diameter { get; set; }
-        public int? high { get; set; }
+        public int? height { get; set; }
         public int? width { get; set; }
         public double crossSection { get; set; }
         public double? airSpeed { get; set; }
