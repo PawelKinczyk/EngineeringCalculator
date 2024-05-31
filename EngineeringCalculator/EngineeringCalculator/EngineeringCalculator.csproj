@@ -67,12 +67,18 @@
 	  <Compile Update="RectToRound.xaml.cs">
 	    <DependentUpon>RectToRound.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="RoundPressureLoss.xaml.cs">
+	    <DependentUpon>RoundPressureLoss.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="RoundToRect.xaml.cs">
 	    <DependentUpon>RoundToRect.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="RoundPressureLoss.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="RoundToRect.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
