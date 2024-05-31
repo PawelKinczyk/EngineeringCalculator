@@ -17,24 +17,18 @@ public partial class RectToRound : ContentPage
 
 
     }
-    private void OnGetEquivalentChannels(object sender, EventArgs e)
+    private void GetBestRoundDuct(object sender, EventArgs e)
     {
         Ducts.Clear();
         // Calculate properties of input duct
-        double activeCrossSection = 0;
         List<Duct> rectangleDuctList = new List<Duct>();
         // List of round ducts
-        List<int> roundDuctDimensions = new List<int>
-        {
-            63,80,100,125,160,200,250,315,400,500,630,800,1000,1250
-        };
+        List<int> roundDuctDimensions = Duct.roundDuctDimensions;
         // Create list with equal round ducts
         List<Duct> selectedRoundDuctsList = new List<Duct>();
 
         if (XPicker.SelectedItem != null && YPicker.SelectedItem != null)
-        // int.TryParse(XPicker.SelectedItem.ToString(), out int XPickerValue) && int.TryParse(YPicker.SelectedItem.ToString(), out int YPickerValue)
         {
-            activeCrossSection = double.Parse(XPicker.SelectedItem.ToString()) * double.Parse(YPicker.SelectedItem.ToString());
             Duct rectangleDuct = new Duct { diameter = null, crossSection = Calculations.crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem) };
             if (Double.TryParse(AirEntry.Text, out double RectangleAirFlow) == true) { rectangleDuct.airSpeed = Calculations.airSpeedCalculation(rectangleDuct.crossSection, RectangleAirFlow); }
             else { rectangleDuct.airSpeed = null; }
@@ -43,25 +37,26 @@ public partial class RectToRound : ContentPage
 
 
             // Define index and loop values
-            int index = -1;
+            int index = 0;
             int pickedIndex = 0;
             double closestValueToActiveCrossSection = 1000000000;
 
             // Loop and find the closest cross section
-            foreach (double roundDuct in roundDuctDimensions)
+            foreach (int roundDuct in roundDuctDimensions)
             {
-                index++;
-                double roundDuctCrossSection = Math.PI * (double)Math.Pow(roundDuct, 2);
-                double crossSectionDifference = Math.Abs(activeCrossSection - roundDuctCrossSection);
+                
+                double roundDuctCrossSection = Calculations.crossSectionRoundDuct(roundDuct);
+                double crossSectionDifference = Math.Abs(rectangleDuct.crossSection - roundDuctCrossSection);
                 if (crossSectionDifference < closestValueToActiveCrossSection)
                 {
                     pickedIndex = index;
                     closestValueToActiveCrossSection = crossSectionDifference;
                 }
                 else { }
+                index++;
             }
 
-            if (pickedIndex >= 1 && pickedIndex <= roundDuctDimensions.Count)
+            if (pickedIndex >= 1 && pickedIndex <= roundDuctDimensions.Count - 1)
             {
                 for (int i = pickedIndex - 1; i <= pickedIndex + 1; i++)
                 {
@@ -97,7 +92,7 @@ public partial class RectToRound : ContentPage
                     selectedRoundDuctsList.Add(duct);
                 }
             }
-            else if (pickedIndex == roundDuctDimensions.Count)
+            else if (pickedIndex == roundDuctDimensions.Count-1)
             {
                 for (int i = pickedIndex - 1; i <= pickedIndex; i++)
                 {
