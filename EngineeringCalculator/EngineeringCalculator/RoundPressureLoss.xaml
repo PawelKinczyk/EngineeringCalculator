@@ -4,6 +4,34 @@
              x:Class="EngineeringCalculator.RoundPressureLoss"
              Title="RoundPressureLoss">
     <ScrollView>
-  
+        <VerticalStackLayout>
+            <!-- Define diameter of round duct-->
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Picker Grid.Row="0" x:Name="DPicker" Title="Select diameter"/>
+            </Grid>
+            <!-- Grid with manual entry -->
+            <Grid Padding="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="0" Grid.Column="0" x:Name="AirEntry"
+       Placeholder="Enter air flow in m3/h" Keyboard="Numeric"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="m³/h" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+            <!-- Button to calculate the best rect ducts -->
+            <Button 
+                x:Name="CounterBtn"
+                Text="Recalculate"
+                SemanticProperties.Hint="Recalculate rectangle duct to round"
+                Clicked="GetBestRectangleDuct"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
