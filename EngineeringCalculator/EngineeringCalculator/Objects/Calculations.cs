@@ -20,5 +20,10 @@ namespace EngineeringCalculator.Objects
         {
             return Math.Round(airFlow / (crossSection * 3600), 3);
         }
+        public static double pressureLoss(double crossSection, double airFlow, double materialRoughness)
+        {
+            // temporally calculation
+            return Math.Round(crossSection*airFlow*materialRoughness, 3);
+        }
     }
 }

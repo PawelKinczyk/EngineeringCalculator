@@ -29,9 +29,19 @@
             <Button 
                 x:Name="CounterBtn"
                 Text="Recalculate"
-                SemanticProperties.Hint="Recalculate rectangle duct to round"
-                Clicked="GetBestRectangleDuct"
+                SemanticProperties.Hint="Calculate pressure loss for round duct"
+                Clicked="GetPressureLossRound"
                 HorizontalOptions="Center" />
+            <!-- Show list view-->
+            <Grid Padding="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="PressureLossValue" Grid.Row="0" Grid.Column="0" Text="Default" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
