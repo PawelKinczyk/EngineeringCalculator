@@ -41,9 +41,25 @@
                     <DataTemplate >
                         <ViewCell>
                             <Label Text="{Binding ductType}" Padding="10"/>
+                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
+                <ListView.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Diameter"/>
+                        <Label Grid.Column="1" Text="Cross-section"/>
+                        <Label Grid.Column="2" Text="Air speed"/>
+                    </Grid>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
