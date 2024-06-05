@@ -20,10 +20,32 @@ namespace EngineeringCalculator.Objects
         {
             return Math.Round(airFlow / (crossSection * 3600), 3);
         }
-        public static double pressureLoss(double crossSection, double airFlow, double materialRoughness)
+        public static (double, double, double) pressureLoss(double crossSection, double airFlow, double materialRoughness
+            , double frictionCoefficient, int diameter, double liquidDensity)
         {
             // temporally calculation
-            return Math.Round(crossSection*airFlow*materialRoughness, 3);
+            double relativeRoughness = frictionCoefficient / 1000 / diameter;
+            double reynoldsValue = airFlow / crossSection * 1 / 3600;
+            double coefficientOfFrictionSmallestDifference = double.MaxValue;
+            double bestCoefficientOfFriction = 0;
+
+
+            if (reynoldsValue >= 4000)
+            {
+                for (double i=0.01; i <=8; i+=0.01)
+                {
+                    double coefficientOfFriction = Math.Pow((-2 * Math.Log(2.51 / (reynoldsValue * Math.Pow(i, -2)) + relativeRoughness / 3.72)), -2);
+                    double coefficientOfFrictionDifference = Math.Abs(i - coefficientOfFriction);
+
+                    if (coefficientOfFrictionDifference < coefficientOfFrictionSmallestDifference)
+                    {
+                        coefficientOfFrictionSmallestDifference = coefficientOfFrictionDifference;
+                        bestCoefficientOfFriction = i;
+                    }
+
+                }
+            }
+            return (relativeRoughness, reynoldsValue, bestCoefficientOfFriction);
         }
     }
 }
