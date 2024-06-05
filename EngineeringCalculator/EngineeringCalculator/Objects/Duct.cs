@@ -26,5 +26,11 @@
         }
     }
 
-
+    public class MaterialFrictionCoefficient
+    {
+        private Dictionary<string, double> frictionCoefficient = new Dictionary<string, double>()
+        {
+            { "Galvanised steel", 0.15 }
+        };
+    }
 }
