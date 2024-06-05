@@ -12,6 +12,13 @@
                 </Grid.RowDefinitions>
                 <Picker Grid.Row="0" x:Name="DPicker" Title="Select diameter"/>
             </Grid>
+            <!-- Define MaterialFrictionCoefficient-->
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Picker Grid.Row="0" x:Name="MaterialFrictionPicker" Title="Select diameter"/>
+            </Grid>
             <!-- Grid with manual entry -->
             <Grid Padding="10" >
                 <Grid.ColumnDefinitions>

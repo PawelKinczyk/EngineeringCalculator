@@ -28,9 +28,53 @@
 
     public class MaterialFrictionCoefficient
     {
-        private Dictionary<string, double> frictionCoefficient = new Dictionary<string, double>()
+        private Dictionary<string, double> frictionCoefficients;
+
+        // Constructor to initialize the dictionary
+        public MaterialFrictionCoefficient()
+        {
+            frictionCoefficients = new Dictionary<string, double>()
         {
             { "Galvanised steel", 0.15 }
         };
+        }
+
+        // Method to add a new material and its friction coefficient
+        public void AddMaterial(string material, double coefficient)
+        {
+            if (!frictionCoefficients.ContainsKey(material))
+            {
+                frictionCoefficients.Add(material, coefficient);
+            }
+            else
+            {
+                throw new ArgumentException("Material already exists.");
+            }
+        }
+
+        // Method to get the friction coefficient of a specific material
+        public double GetFrictionCoefficient(string material)
+        {
+            if (frictionCoefficients.TryGetValue(material, out double coefficient))
+            {
+                return coefficient;
+            }
+            else
+            {
+                throw new KeyNotFoundException("Material not found.");
+            }
+        }
+
+        // Method to retrieve the entire dictionary
+        public Dictionary<string, double> GetAllFrictionCoefficients()
+        {
+            return new Dictionary<string, double>(frictionCoefficients); // Return a copy to prevent modification
+        }
+
+        // Method to retrieve the entire dictionary
+        public List<string> GetAllFrictionCoefficientsNames()
+        {
+            return new List<string> (frictionCoefficients.Keys); // Return a copy to prevent modification
+        }
     }
 }
