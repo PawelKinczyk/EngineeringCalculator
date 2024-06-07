@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ABI.System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,32 +21,47 @@ namespace EngineeringCalculator.Objects
         {
             return Math.Round(airFlow / (crossSection * 3600), 3);
         }
-        public static (double, double, double) pressureLoss(double crossSection, double airFlow, double materialRoughness
-            , double frictionCoefficient, int diameter, double liquidDensity)
+        public static (double, double, double, double) pressureLoss(double airFlow, double materialRoughness
+            , int diameter, string liquidDensity)
         {
-            // temporally calculation
-            double relativeRoughness = frictionCoefficient / 1000 / diameter;
-            double reynoldsValue = airFlow / crossSection * 1 / 3600;
             double coefficientOfFrictionSmallestDifference = double.MaxValue;
             double bestCoefficientOfFriction = 0;
+            double pressureLoss = 0;
+            double airSpeed = airFlow / Calculations.crossSectionRoundDuct(diameter);
+            double reynoldsValue = 0;
 
-
-            if (reynoldsValue >= 4000)
+            if (Double.TryParse(liquidDensity, out double liquidDensityDouble) == true)
             {
-                for (double i=0.01; i <=8; i+=0.01)
+                reynoldsValue = (airFlow / Calculations.crossSectionRoundDuct(diameter) * 1 / 3600) / liquidDensityDouble;
+
+
+
+
+                if (reynoldsValue >= 4000)
                 {
-                    double coefficientOfFriction = Math.Pow((-2 * Math.Log(2.51 / (reynoldsValue * Math.Pow(i, -2)) + relativeRoughness / 3.72)), -2);
-                    double coefficientOfFrictionDifference = Math.Abs(i - coefficientOfFriction);
-
-                    if (coefficientOfFrictionDifference < coefficientOfFrictionSmallestDifference)
+                    for (double i = 0.01; i <= 8; i += 0.01)
                     {
-                        coefficientOfFrictionSmallestDifference = coefficientOfFrictionDifference;
-                        bestCoefficientOfFriction = i;
-                    }
+                        double coefficientOfFriction = Math.Pow((-2 * Math.Log(2.51 / (reynoldsValue * Math.Pow(i, -2)) + materialRoughness / 3.72)), -2);
+                        double coefficientOfFrictionDifference = Math.Abs(i - coefficientOfFriction);
 
+                        if (coefficientOfFrictionDifference < coefficientOfFrictionSmallestDifference)
+                        {
+                            coefficientOfFrictionSmallestDifference = coefficientOfFrictionDifference;
+                            bestCoefficientOfFriction = i;
+                        }
+
+                    }
                 }
+
+                pressureLoss = (bestCoefficientOfFriction / diameter) * (liquidDensityDouble * Math.Pow(airSpeed, 2) / 2);
+
+                return (pressureLoss, materialRoughness, reynoldsValue, bestCoefficientOfFriction);
             }
-            return (relativeRoughness, reynoldsValue, bestCoefficientOfFriction);
+            else
+            {
+                // TODO : add exception when program couldn't parse text
+                return Exception.; 
+            }
         }
     }
 }
