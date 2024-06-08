@@ -1,11 +1,4 @@
-﻿using ABI.System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EngineeringCalculator.Objects
+﻿namespace EngineeringCalculator.Objects
 {
     public class Calculations
     {
@@ -22,7 +15,7 @@ namespace EngineeringCalculator.Objects
             return Math.Round(airFlow / (crossSection * 3600), 3);
         }
         public static (double, double, double, double) pressureLoss(double airFlow, double materialRoughness
-            , int diameter, string liquidDensity)
+            , int? diameter, string liquidDensity)
         {
             double coefficientOfFrictionSmallestDifference = double.MaxValue;
             double bestCoefficientOfFriction = 0;
@@ -60,7 +53,7 @@ namespace EngineeringCalculator.Objects
             else
             {
                 // TODO : add exception when program couldn't parse text
-                return Exception.; 
+                throw new System.Exception("Liquid density is not the value");
             }
         }
     }
