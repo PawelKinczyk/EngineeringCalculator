@@ -2,13 +2,29 @@
 {
     public class Calculations
     {
-        public static double crossSectionRoundDuct(int ductDimension)
+        public static double crossSectionRoundDuct(int? ductDimension)
         {
-            return Math.Round((Math.PI * Math.Pow(ductDimension, 2)) / 1000000, 3);
+            if (ductDimension == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Math.Round((Math.PI * Math.Pow((double)ductDimension, 2)) / 1000000, 3);
+            }
+            
         }
-        public static double crossSectionRectangleDuct(int XLength, int YLength)
+        public static double crossSectionRectangleDuct(int? XLength, int? YLength)
         {
-            return Math.Round(((double)(XLength * YLength) / 1000000), 3);
+            if (XLength == null || YLength == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Math.Round(((double)(XLength * YLength) / 1000000), 3);
+            }
+            
         }
         public static double airSpeedCalculation(double crossSection, double airFlow)
         {
