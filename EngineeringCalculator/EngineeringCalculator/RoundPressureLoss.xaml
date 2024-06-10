@@ -52,7 +52,8 @@
                 SemanticProperties.Hint="Calculate pressure loss for round duct"
                 Clicked="GetPressureLossRound"
                 HorizontalOptions="Center" />
-            <!-- Show list view-->
+            <!-- Show grid -->
+            <!-- TODO : Change grid appeatance-->
             <Grid Padding="10" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

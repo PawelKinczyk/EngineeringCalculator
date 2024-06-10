@@ -6,14 +6,12 @@ namespace EngineeringCalculator;
 
 public partial class RoundPressureLoss : ContentPage
 {
-    private MaterialFrictionCoefficient materials;
-
+    MaterialFrictionCoefficient materials = new MaterialFrictionCoefficient();
     public RoundPressureLoss()
     {
         InitializeComponent();
 
         DPicker.ItemsSource = Duct.roundDuctDimensions;
-        MaterialFrictionCoefficient materials = new MaterialFrictionCoefficient();
         MaterialFrictionPicker.ItemsSource = materials.GetAllFrictionCoefficientsNames();
         AirDensityEntry.Text = "0.0000015";
     }
@@ -21,9 +19,9 @@ public partial class RoundPressureLoss : ContentPage
     {
         if (DPicker.SelectedItem != null && AirEntry.Text != null && Double.TryParse(AirEntry.Text, out double AirFlow) == true)
         {
-            
-            Duct roundDuct = new Duct { diameter = (int)DPicker.SelectedItem, crossSection = Calculations.crossSectionRoundDuct((int)DPicker.SelectedItem), materialRoughness = materials.GetFrictionCoefficient((string)MaterialFrictionPicker.SelectedItem), airVolume= Double.Parse(AirEntry.Text) };
-            // TODO : change parameters in pressure loss calculations
+            string materialName = (string)MaterialFrictionPicker.SelectedItem;
+            double materialRoughness = materials.GetFrictionCoefficient(materialName);
+            Duct roundDuct = new Duct { diameter = (int)DPicker.SelectedItem, crossSection = Calculations.crossSectionRoundDuct((int)DPicker.SelectedItem), materialRoughness = materialRoughness , airVolume= Double.Parse(AirEntry.Text) };
             PressureLossValue.Text = Calculations.pressureLoss(roundDuct.airVolume, roundDuct.materialRoughness, roundDuct.diameter,  AirDensityEntry.Text).ToString();
         }
     }

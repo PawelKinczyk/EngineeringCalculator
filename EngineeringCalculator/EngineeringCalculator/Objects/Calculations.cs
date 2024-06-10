@@ -12,7 +12,7 @@
             {
                 return Math.Round((Math.PI * Math.Pow((double)ductDimension, 2)) / 1000000, 3);
             }
-            
+
         }
         public static double crossSectionRectangleDuct(int? XLength, int? YLength)
         {
@@ -24,7 +24,7 @@
             {
                 return Math.Round(((double)(XLength * YLength) / 1000000), 3);
             }
-            
+
         }
         public static double airSpeedCalculation(double crossSection, double airFlow)
         {
@@ -39,7 +39,7 @@
             double airSpeed = airFlow / Calculations.crossSectionRoundDuct(diameter);
             double reynoldsValue = 0;
 
-            if (Double.TryParse(liquidDensity, out double liquidDensityDouble) == true)
+            if (Double.TryParse(liquidDensity, out double liquidDensityDouble) == true || diameter == null)
             {
                 reynoldsValue = (airFlow / Calculations.crossSectionRoundDuct(diameter) * 1 / 3600) / liquidDensityDouble;
 
@@ -60,9 +60,10 @@
                         }
 
                     }
+                    // TODO : add option if reynolds is not fewer than 4000
                 }
 
-                pressureLoss = (bestCoefficientOfFriction / diameter) * (liquidDensityDouble * Math.Pow(airSpeed, 2) / 2);
+                pressureLoss = (bestCoefficientOfFriction / (double)diameter) * (liquidDensityDouble * Math.Pow(airSpeed, 2) / 2);
 
                 return (pressureLoss, materialRoughness, reynoldsValue, bestCoefficientOfFriction);
             }
