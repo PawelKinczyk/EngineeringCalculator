@@ -10,7 +10,8 @@
             }
             else
             {
-                return Math.Round((Math.PI * Math.Pow((double)ductDimension, 2)) / 1000000, 3);
+                int? ductRadius = ductDimension/2;
+                return Math.Round((Math.PI * Math.Pow((double)ductRadius, 2)) / 1000000, 3);
             }
 
         }
@@ -30,13 +31,13 @@
         {
             return Math.Round(airFlow / (crossSection * 3600), 3);
         }
-        public static (double, double, double, double) pressureLoss(double airFlow, double materialRoughness
+        public static (double, double, double, double, double) pressureLoss(double airFlow, double materialRoughness
             , int? diameter, string liquidDensity)
         {
             double coefficientOfFrictionSmallestDifference = double.MaxValue;
             double bestCoefficientOfFriction = 0;
             double pressureLoss = 0;
-            double airSpeed = airFlow / Calculations.crossSectionRoundDuct(diameter);
+            double airSpeed = Calculations.airSpeedCalculation(Calculations.crossSectionRoundDuct(diameter), airFlow);
             double reynoldsValue = 0;
 
             if (Double.TryParse(liquidDensity, out double liquidDensityDouble) == true || diameter == null)
@@ -63,13 +64,15 @@
                     // TODO : add option if reynolds is not fewer than 4000
                 }
 
-                pressureLoss = (bestCoefficientOfFriction / (double)diameter) * (liquidDensityDouble * Math.Pow(airSpeed, 2) / 2);
+                // TODO : add air density parameter 
+                pressureLoss = (bestCoefficientOfFriction / ((double)diameter/1000)) * (1.205 * Math.Pow(airSpeed, 2) / 2);
 
-                return (pressureLoss, materialRoughness, reynoldsValue, bestCoefficientOfFriction);
+                return (Math.Round(pressureLoss, 2), Math.Round(materialRoughness,2), Math.Round(reynoldsValue,2), Math.Round(bestCoefficientOfFriction,2), Math.Round(airSpeed, 2));
             }
             else
             {
                 // TODO : add exception when program couldn't parse text
+
                 throw new System.Exception("Liquid density is not the value");
             }
         }
