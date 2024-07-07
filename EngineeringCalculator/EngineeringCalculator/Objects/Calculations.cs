@@ -32,20 +32,32 @@
             return Math.Round(airFlow / (crossSection * 3600), 3);
         }
         public static (double, double, double, double, double) pressureLoss(double airFlow, double materialRoughness
-            , int? diameter, string liquidDensity)
+            , string liquidDensity, int? diameter = null, int? ductHeight = null, int? ductWidth = null)
         {
             double coefficientOfFrictionSmallestDifference = double.MaxValue;
             double bestCoefficientOfFriction = 0;
             double pressureLoss = 0;
-            double airSpeed = Calculations.airSpeedCalculation(Calculations.crossSectionRoundDuct(diameter), airFlow);
+            double airSpeed = Calculations.airSpeedCalculation(Calculations.crossSectionRectangleDuct(ductHeight, ductWidth), airFlow);
             double reynoldsValue = 0;
 
-            if (Double.TryParse(liquidDensity, out double liquidDensityDouble) == true || diameter == null)
+            if (Double.TryParse(liquidDensity, out double liquidDensityDouble) == true || diameter == null && (ductHeight == null || ductWidth == null))
             {
-                reynoldsValue = (airFlow / Calculations.crossSectionRoundDuct(diameter) * 1 / 3600) / liquidDensityDouble;
+                if (diameter != null && (ductHeight == null || ductWidth == null))
+                {
+                    reynoldsValue = (airFlow / Calculations.crossSectionRoundDuct(diameter) * 1 / 3600) / liquidDensityDouble;
+                }
+                else if (ductHeight != null && ductWidth != null)
+                {
+                    //diameter = (int)(1.3 * (Math.Pow((double)(ductWidth * ductHeight), 0.625) / (Math.Pow((double)(ductWidth + ductHeight), 0.250))));
+                    diameter = (2*ductHeight*ductWidth) / (ductHeight + ductWidth);
+                    reynoldsValue = (airFlow / Calculations.crossSectionRoundDuct(diameter) * 1 / 3600) / liquidDensityDouble;
+                }
+                else
+                {
+                    throw new System.Exception("No diameter");
+                }
 
-
-
+               
 
                 if (reynoldsValue >= 4000)
                 {

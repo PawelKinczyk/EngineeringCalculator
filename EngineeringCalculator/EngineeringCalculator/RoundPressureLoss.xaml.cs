@@ -25,7 +25,8 @@ public partial class RoundPressureLoss : ContentPage
             string materialName = (string)MaterialFrictionPicker.SelectedItem;
             double materialRoughness = materials.GetFrictionCoefficient(materialName);
             Duct roundDuct = new Duct { diameter = (int)DPicker.SelectedItem, crossSection = Calculations.crossSectionRoundDuct((int)DPicker.SelectedItem), materialRoughness = materialRoughness , airVolume= Double.Parse(AirEntry.Text) };
-            (roundDuct.pressureLossPerMeter, roundDuct.materialRoughness, roundDuct.reynoldsValue, roundDuct.airLiquidDensity, roundDuct.airSpeed) = Calculations.pressureLoss(roundDuct.airVolume, roundDuct.materialRoughness, roundDuct.diameter,  AirDensityEntry.Text);
+            (roundDuct.pressureLossPerMeter, roundDuct.materialRoughness, roundDuct.reynoldsValue, roundDuct.airLiquidDensity, roundDuct.airSpeed) = Calculations.pressureLoss(airFlow: roundDuct.airVolume, 
+                materialRoughness: roundDuct.materialRoughness, diameter: roundDuct.diameter, liquidDensity: AirDensityEntry.Text);
             
             DuctList.Add(roundDuct);
             DuctPressureLoss.ItemsSource = DuctList;

@@ -59,6 +59,7 @@
         {
             if (frictionCoefficients.TryGetValue(material, out double coefficient))
             {
+                // TODO : think about better exception
                 return coefficient;
             }
             else

@@ -5,12 +5,18 @@
              Title="RectPressureLoss">
     <ScrollView>
         <VerticalStackLayout>
-            <!-- Define diameter of round duct-->
+            <!-- Define X Y length of rectangle duct-->
             <Grid Padding="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Picker Grid.Row="0" x:Name="DPicker" Title="Select diameter"/>
+                <Picker Grid.Row="0" x:Name="XPicker" Title="Select diameter"/>
+            </Grid>
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Picker Grid.Row="0" x:Name="YPicker" Title="Select diameter"/>
             </Grid>
             <!-- Define MaterialFrictionCoefficient-->
             <Grid Padding="10">

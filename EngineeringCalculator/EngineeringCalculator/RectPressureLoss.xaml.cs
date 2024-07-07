@@ -12,22 +12,23 @@ public partial class RectPressureLoss : ContentPage
     {
         InitializeComponent();
 
-        DPicker.ItemsSource = Duct.roundDuctDimensions;
+        XPicker.ItemsSource = Duct.rectangleDuctDimensions;
+        YPicker.ItemsSource = Duct.rectangleDuctDimensions;
         MaterialFrictionPicker.ItemsSource = materials.GetAllFrictionCoefficientsNames();
         AirDensityEntry.Text = "0.0000015";
     }
     private void GetPressureLossRound(object sender, EventArgs e)
     {
         DuctList.Clear();
-        if (DPicker.SelectedItem != null && AirEntry.Text != null && Double.TryParse(AirEntry.Text, out double AirFlow) == true)
+        if (XPicker.SelectedItem != null && YPicker.SelectedItem != null && AirEntry.Text != null && Double.TryParse(AirEntry.Text, out double AirFlow) == true)
         {
             // TODO : Clean code below
             string materialName = (string)MaterialFrictionPicker.SelectedItem;
             double materialRoughness = materials.GetFrictionCoefficient(materialName);
-            Duct roundDuct = new Duct { diameter = (int)DPicker.SelectedItem, crossSection = Calculations.crossSectionRoundDuct((int)DPicker.SelectedItem), materialRoughness = materialRoughness , airVolume= Double.Parse(AirEntry.Text) };
-            (roundDuct.pressureLossPerMeter, roundDuct.materialRoughness, roundDuct.reynoldsValue, roundDuct.airLiquidDensity, roundDuct.airSpeed) = Calculations.pressureLoss(roundDuct.airVolume, roundDuct.materialRoughness, roundDuct.diameter,  AirDensityEntry.Text);
-            
-            DuctList.Add(roundDuct);
+            Duct rectDuct = new Duct { height = (int)YPicker.SelectedItem, width = (int)XPicker.SelectedItem, crossSection = Calculations.crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem), materialRoughness = materialRoughness, airVolume = Double.Parse(AirEntry.Text) };
+            (rectDuct.pressureLossPerMeter, rectDuct.materialRoughness, rectDuct.reynoldsValue, rectDuct.airLiquidDensity, rectDuct.airSpeed) = Calculations.pressureLoss(rectDuct.airVolume, rectDuct.materialRoughness, ductHeight: rectDuct.height, ductWidth: rectDuct.width, liquidDensity: AirDensityEntry.Text);
+
+            DuctList.Add(rectDuct);
             DuctPressureLoss.ItemsSource = DuctList;
         }
     }
