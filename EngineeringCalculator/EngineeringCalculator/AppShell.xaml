@@ -31,5 +31,10 @@
         ContentTemplate="{DataTemplate local:RoundPressureLoss}"
             Route="RoundPressureLoss"/>
     </FlyoutItem>
-
+    
+    <FlyoutItem Title="Rectangle duct pressure loss" Icon="tick_box.png">
+        <ShellContent
+        ContentTemplate="{DataTemplate local:RectPressureLoss}"
+            Route="RectPressureLoss"/>
+    </FlyoutItem>
 </Shell>

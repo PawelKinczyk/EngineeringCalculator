@@ -67,6 +67,9 @@
 	  <Compile Update="RectToRound.xaml.cs">
 	    <DependentUpon>RectToRound.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="RectPressureLoss.xaml.cs">
+	    <DependentUpon>RectPressureLoss.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="RoundPressureLoss.xaml.cs">
 	    <DependentUpon>RoundPressureLoss.xaml</DependentUpon>
 	  </Compile>
@@ -76,6 +79,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="RectPressureLoss.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="RoundPressureLoss.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EngineeringCalculator.RectPressureLoss"
+             Title="RectPressureLoss">
+    <ScrollView>
+        <VerticalStackLayout>
+            <!-- Define diameter of round duct-->
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Picker Grid.Row="0" x:Name="DPicker" Title="Select diameter"/>
+            </Grid>
+            <!-- Define MaterialFrictionCoefficient-->
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Picker Grid.Row="0" x:Name="MaterialFrictionPicker" Title="Select duct material"/>
+            </Grid>
+            <!-- Grid with manual entry -->
+            <Grid Padding="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="0" Grid.Column="0" x:Name="AirDensityEntry"
+       Placeholder="Enter air density m2/s" Keyboard="Numeric"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="m²/s" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+            <!-- Grid with manual entry -->
+            <Grid Padding="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="0" Grid.Column="0" x:Name="AirEntry"
+       Placeholder="Enter air flow in m3/h" Keyboard="Numeric"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="m³/h" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+            <!-- Button to calculate the best rect ducts -->
+            <Button 
+                x:Name="CounterBtn"
+                Text="Recalculate"
+                SemanticProperties.Hint="Calculate pressure loss for round duct"
+                Clicked="GetPressureLossRound"
+                HorizontalOptions="Center" />
+            <!-- Show grid -->
+            <ListView x:Name="DuctPressureLoss" >
+                <ListView.Header>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Style="{StaticResource headerLabel}" Text="Pressure loss" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" />
+                        <Label Style="{StaticResource headerLabel}" Text="Material Roughness" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"  />
+                        <Label Style="{StaticResource headerLabel}" Text="Reynold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" />
+                        <Label Style="{StaticResource headerLabel}" Text="Air speed" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3"  />
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                           Text="{Binding pressureLossPerMeter, StringFormat='{0} Pa/m;'}" HorizontalOptions="Center" VerticalOptions="Center"
+                            />
+                                <Label Grid.Column="1"
+                           Text="{Binding materialRoughness, StringFormat='{0} k [mm];'}" HorizontalOptions="Center" VerticalOptions="Center"
+                            />
+                                <Label
+                           Grid.Column="2"
+                           Text="{Binding reynoldsValue, StringFormat='{0} Re;'}" HorizontalOptions="Center" VerticalOptions="Center"
+                            />
+                                <Label
+                           Grid.Column="3"
+                           Text="{Binding airSpeed, StringFormat='{0} m/s;'}" HorizontalOptions="Center" VerticalOptions="Center"
+                            />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
