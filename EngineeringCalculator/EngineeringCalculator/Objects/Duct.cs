@@ -10,6 +10,7 @@
         public double airVolume { get; set; } // cubic meters per hour
         public double airLiquidDensity { get; set; }
         public double airLiquidViscosity { get; set; }
+        public double coefficientOfFriction { get; set; }
         public double reynoldsValue { get; set; }
         public double materialRoughness { get; set; }
         public double pressureLossPerMeter { get; set; }

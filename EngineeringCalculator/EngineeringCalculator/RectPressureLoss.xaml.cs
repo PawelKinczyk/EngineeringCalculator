@@ -29,7 +29,7 @@ public partial class RectPressureLoss : ContentPage
                 string materialName = (string)MaterialFrictionPicker.SelectedItem;
                 double materialRoughness = materials.GetFrictionCoefficient(materialName);
                 Duct rectDuct = new Duct { height = (int)YPicker.SelectedItem, width = (int)XPicker.SelectedItem, crossSection = Calculations.crossSectionRectangleDuct((int)XPicker.SelectedItem, (int)YPicker.SelectedItem), materialRoughness = materialRoughness, airVolume = Double.Parse(AirEntry.Text) };
-                (rectDuct.pressureLossPerMeter, rectDuct.materialRoughness, rectDuct.reynoldsValue, rectDuct.airLiquidDensity, rectDuct.airSpeed) = Calculations.pressureLoss(rectDuct.airVolume, rectDuct.materialRoughness, ductHeight: rectDuct.height, ductWidth: rectDuct.width, liquidDensity: AirDensityEntry.Text, liquidViscosity: AirViscosityEntry.Text);
+                (rectDuct.pressureLossPerMeter, rectDuct.materialRoughness, rectDuct.reynoldsValue, rectDuct.coefficientOfFriction, rectDuct.airSpeed) = Calculations.pressureLoss(rectDuct.airVolume, rectDuct.materialRoughness, ductHeight: rectDuct.height, ductWidth: rectDuct.width, liquidDensity: AirDensityEntry.Text, liquidViscosity: AirViscosityEntry.Text);
 
                 DuctList.Add(rectDuct);
                 DuctPressureLoss.ItemsSource = DuctList;

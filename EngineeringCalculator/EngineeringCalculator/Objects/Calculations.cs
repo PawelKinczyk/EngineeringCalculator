@@ -111,7 +111,7 @@
                 }
                 
 
-                return (Math.Round(pressureLoss, 2), Math.Round(materialRoughness, 2), Math.Round(reynoldsValue, 2), Math.Round(bestCoefficientOfFriction, 2), Math.Round(airSpeed, 2));
+                return (Math.Round(pressureLoss, 2), Math.Round(materialRoughness, 2), Math.Round(reynoldsValue, 2), Math.Round(bestCoefficientOfFriction, 3), Math.Round(airSpeed, 2));
             }
             else
             {
