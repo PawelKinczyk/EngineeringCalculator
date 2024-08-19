@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using System.Globalization;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -17,7 +18,9 @@ public partial class App : MauiWinUIApplication
 	public App()
 	{
 		this.InitializeComponent();
-	}
+		// Always use US culture to avoid problem with "." and "," interpretation 
+        CultureInfo.CurrentCulture = new CultureInfo("en-US", false);
+    }
 
 	protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 }
