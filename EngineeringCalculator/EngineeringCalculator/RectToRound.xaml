@@ -40,25 +40,35 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate >
                         <ViewCell>
-                            <Label Text="{Binding ductType}" Padding="10"/>
-                            
+                            <!-- Using a Grid to control Label's position and alignment -->
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding ductType}" 
+                           HorizontalOptions="FillAndExpand" 
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="#D5C6C6" 
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
                 <ListView.Header>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Diameter"/>
-                        <Label Grid.Column="1" Text="Cross-section"/>
-                        <Label Grid.Column="2" Text="Air speed"/>
-                    </Grid>
+                        <Label Style="{StaticResource headerLabel}" Text="Diameter" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" />
+                        <Label Style="{StaticResource headerLabel}" Text="Cross-section" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"  />
+                        <Label Style="{StaticResource headerLabel}" Text="Air speed" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" />
+                        </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>

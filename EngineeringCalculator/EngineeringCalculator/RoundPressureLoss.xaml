@@ -30,11 +30,11 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Entry Grid.Row="0" Grid.Column="0" x:Name="AirDensityEntry"
-       Placeholder="Enter air density kg/m3" Keyboard="Numeric"/>
-                <Label Grid.Row="0" Grid.Column="1" Text="kg/m3" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+       Placeholder="Enter air density kg/m³" Keyboard="Numeric"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="kg/m³ (air density)" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Entry Grid.Row="1" Grid.Column="0" x:Name="AirViscosityEntry"
        Placeholder="Enter air viscosity m2/s" Keyboard="Numeric"/>
-                <Label Grid.Row="1" Grid.Column="1" Text="m²/s" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="m²/s (air viscosity)" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
             <!-- Grid with manual entry -->
             <Grid Padding="10" >
@@ -46,7 +46,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Entry Grid.Row="0" Grid.Column="0" x:Name="AirEntry"
-       Placeholder="Enter air flow in m3/h" Keyboard="Numeric"/>
+       Placeholder="Enter air flow in m³/h" Keyboard="Numeric"/>
                 <Label Grid.Row="0" Grid.Column="1" Text="m³/h" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
             <!-- Button to calculate the best rect ducts -->

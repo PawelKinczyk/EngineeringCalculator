@@ -11,7 +11,7 @@
             else
             {
                 int? ductRadius = ductDimension / 2;
-                return Math.Round((Math.PI * Math.Pow((double)ductRadius, 2)) / 1000000, 6);
+                return Math.Round((Math.PI * Math.Pow((double)ductRadius, 2)) / 1000000, 2);
             }
         }
 
@@ -23,13 +23,13 @@
             }
             else
             {
-                return Math.Round(((double)(XLength * YLength) / 1000000), 6);
+                return Math.Round(((double)(XLength * YLength) / 1000000), 2);
             }
         }
 
         public static double airSpeedCalculation(double crossSection, double airFlow)
         {
-            return Math.Round(airFlow / (crossSection * 3600), 6);
+            return Math.Round(airFlow / (crossSection * 3600), 2);
         }
 
         public static (double, double, double, double, double) pressureLoss(double airFlow, double materialRoughness
