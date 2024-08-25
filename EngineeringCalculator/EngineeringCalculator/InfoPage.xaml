@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EngineeringCalculator.InfoPage"
+             Title="Info Page">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+            Text="Hi, here i want to write some information about how the calculations works."
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Style="{StaticResource headerLabel}"
+            Text="1. Calculate equal duct size round to rectangle and reverse"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="a) You set all inputs like duct size and flow in m³/"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="b) Then program calculate cross section of this duct and sugest You three closest equal ducts"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="IMAGE WITH FORMULA"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Style="{StaticResource headerLabel}"
+            Text="2. Duct pressure loss"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="a) Set all inputs like duct size, duct material, air density in kg/m³ (default is for 20°C air temperature = 1.205), air viscosity in m²/s (default is for 20°C air temperature = 0.00015) and air flow in m³/h"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="b) Program calculate air speed and diameter substitute if duct is rectangle (formula used for this is below"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="IMAGE WITH FORMULA"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="c) Program calculate reynolds value (formula below). Now program calculate only ducts with value Re>4000"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Image
+                Source="re_formula.png"
+                SemanticProperties.Description="Reynolds"
+                HorizontalOptions="Center"/>
+            <Label 
+            Text="d) Best coefficient of friction is calculate by iterative method from 0.001 &lt; λ &lt; 10. Formula below:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Image
+                Source="coeff_formula.png"
+                SemanticProperties.Description="Coefficient"
+                HorizontalOptions="Center"/>
+            <Label 
+            Text="e) Best coefficient of friction allows to calculate pressure loss by using formula below:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Image
+                Source="pressure_loss_formula.png"
+                SemanticProperties.Description="PressureLoss"
+                HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

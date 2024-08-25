@@ -37,4 +37,9 @@
         ContentTemplate="{DataTemplate local:RectPressureLoss}"
             Route="RectPressureLoss"/>
     </FlyoutItem>
+    <FlyoutItem Title="Info page" Icon="tick_box.png">
+        <ShellContent
+        ContentTemplate="{DataTemplate local:InfoPage}"
+            Route="InfoPage"/>
+    </FlyoutItem>
 </Shell>
