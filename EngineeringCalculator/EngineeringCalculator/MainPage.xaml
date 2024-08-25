@@ -12,8 +12,9 @@
             <Image
                 Source="main_icon.png"
                 SemanticProperties.Description="Logo"
-                HeightRequest="200"
-                HorizontalOptions="Center"/>
+                MaximumHeightRequest="250"
+                HorizontalOptions="Center"
+                Margin="10"/>
 
             <Label
                 Text="Engineering calculator"
@@ -32,8 +33,9 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="InstructionClicked"
                 HorizontalOptions="Center" />
-            
-
+            <Label
+                Text="The information contained in the application is for information purposes only. The results of the calculations should be interpreted by the designer. The information contained on the website does not constitute technical advice. Any decisions, selections or solutions based on the results of the calculations are the responsibility of the user."
+                HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>
 

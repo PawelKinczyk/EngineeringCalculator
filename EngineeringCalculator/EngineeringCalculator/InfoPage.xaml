@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EngineeringCalculator.InfoPage"
-             Title="Info Page">
+             Title="Information Page">
     <ScrollView>
         <VerticalStackLayout>
             <Label 
@@ -19,18 +19,19 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
             <Label 
-            Text="b) Then program calculate cross section of this duct and sugest You three closest equal ducts"
+            Text="b) Then program calculate cross section of this duct and sugest You three closest equal ducts. Formula below"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-            <Label 
-            Text="IMAGE WITH FORMULA"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            <Image
+                Source="air_speed_duct_formula.png"
+                SemanticProperties.Description="Reynolds"
+                HorizontalOptions="Center"/>
             <Label 
             Style="{StaticResource headerLabel}"
             Text="2. Duct pressure loss"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+            
             <Label 
             Text="a) Set all inputs like duct size, duct material, air density in kg/m³ (default is for 20°C air temperature = 1.205), air viscosity in m²/s (default is for 20°C air temperature = 0.00015) and air flow in m³/h"
             VerticalOptions="Center" 
@@ -39,10 +40,10 @@
             Text="b) Program calculate air speed and diameter substitute if duct is rectangle (formula used for this is below"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-            <Label 
-            Text="IMAGE WITH FORMULA"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            <Image
+                Source="rectangle_diameter_formula.png"
+                SemanticProperties.Description="Reynolds"
+                HorizontalOptions="Center"/>
             <Label 
             Text="c) Program calculate reynolds value (formula below). Now program calculate only ducts with value Re>4000"
             VerticalOptions="Center" 

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EngineeringCalculator.RoundToRect"
-             Title="RoundToRect">
+             Title="Round duct to rectangle calculations">
     <ScrollView>
         <VerticalStackLayout>
             <!-- Define one dimension of rectangular duct-->
