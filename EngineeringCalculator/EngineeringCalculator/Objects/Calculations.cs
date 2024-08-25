@@ -74,7 +74,7 @@
 
                 if (reynoldsValue >= 4000)
                 {
-                    for (double i = 0.01; i <= 8; i += 0.001)
+                    for (double i = 0.001; i <= 10; i += 0.001)
                     {
                         
                         double coefficientOfFriction = Math.Pow((-2 * Math.Log10(2.51 / (reynoldsValue * Math.Pow(i, 0.5)) + materialRoughnessRelative / 3.72)), -2);
@@ -86,6 +86,10 @@
                             bestCoefficientOfFriction = i;
                         }
 
+                    }
+                    if (bestCoefficientOfFriction == 10 || bestCoefficientOfFriction == 0.001)
+                    {
+                        throw new Exception("Coefficient of friction is out of calculation range");
                     }
 
                 }
