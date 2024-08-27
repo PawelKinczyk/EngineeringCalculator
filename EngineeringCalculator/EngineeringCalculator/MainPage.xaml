@@ -30,8 +30,13 @@
                 HorizontalOptions="Center" />
             <Button
                 Text="Instruction video"
-                SemanticProperties.Hint="Counts the number of times you click"
+                SemanticProperties.Hint="Video with program instruction"
                 Clicked="InstructionClicked"
+                HorizontalOptions="Center" />
+            <Button
+                Text="My Blog"
+                SemanticProperties.Hint="Go to my blog"
+                Clicked="BlogClicked"
                 HorizontalOptions="Center" />
             <Label
                 Text="The information contained in the application is for information purposes only. The results of the calculations should be interpreted by the designer. The information contained on the website does not constitute technical advice. Any decisions, selections or solutions based on the results of the calculations are the responsibility of the user."

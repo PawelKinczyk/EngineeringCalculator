@@ -10,13 +10,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Picker Grid.Row="0" x:Name="XPicker" Title="Select diameter"/>
+                <Picker Grid.Row="0" x:Name="XPicker" Title="Select X dimension"/>
             </Grid>
             <Grid Padding="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Picker Grid.Row="0" x:Name="YPicker" Title="Select diameter"/>
+                <Picker Grid.Row="0" x:Name="YPicker" Title="Select Y dimension"/>
             </Grid>
             <!-- Define MaterialFrictionCoefficient-->
             <Grid Padding="10">

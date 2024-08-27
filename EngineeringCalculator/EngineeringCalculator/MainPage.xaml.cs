@@ -27,5 +27,10 @@ public partial class MainPage : ContentPage
 		Process.Start(new ProcessStartInfo("https://www.youtube.com/watch?v=C4MpzSMkinw&t=2881s") { UseShellExecute = true});
     }
 
+    private void BlogClicked(object sender, EventArgs e)
+    {
+        Process.Start(new ProcessStartInfo("https://produktywnyprojektant.com/en/") { UseShellExecute = true });
+    }
+
 }
 
