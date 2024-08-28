@@ -8,10 +8,6 @@ This is free app which I created for my daily work as MEP engineer. I want to cr
 ## Video with instruction
 [![ENGINEERING CALCULATOR](https://github.com/user-attachments/assets/e2e5d41e-be59-4ab8-ad8c-39b01e7284de)](https://youtu.be/5BYdaI4kRNo "Engineering Calculator")
 
-## Project roadmap
-
-- [ ]  ddd
-
 ## Contributing
 
 Contributions are always welcome! I look for help in tagging and improving models. Feel free to improve this project.
