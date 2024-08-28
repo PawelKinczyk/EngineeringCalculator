@@ -24,7 +24,7 @@ public partial class MainPage : ContentPage
 	}
     private void InstructionClicked(object sender, EventArgs e)
     {
-		Process.Start(new ProcessStartInfo("https://www.youtube.com/watch?v=C4MpzSMkinw&t=2881s") { UseShellExecute = true});
+		Process.Start(new ProcessStartInfo("https://youtu.be/5BYdaI4kRNo") { UseShellExecute = true});
     }
 
     private void BlogClicked(object sender, EventArgs e)
